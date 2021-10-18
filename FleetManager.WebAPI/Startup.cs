@@ -22,12 +22,23 @@ namespace FleetManager.WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             // TODO: (Step 2) change the call to the dao factory so it recieves the data context for the SQL Server database
-            services.AddScoped(s => DaoFactory.Create<Car>(MemoryDataContext.Instance));
-            services.AddScoped(s => DaoFactory.Create<Location>(MemoryDataContext.Instance));
+            /**
+             * services.AddScoped(s => DaoFactory.Create<Car>(MemoryDataContext.Instance)); og 
+             * services.AddScoped(s => DaoFactory.Create<Location>(MemoryDataContext.Instance)); er implementeret som singleton
+             * Der er iøvrigt lavet injection!
+             * De er skrevet som singleton, men det er ikke god praksis i WEB Application
+             */
+            // services.AddScoped(s => DaoFactory.Create<Car>(MemoryDataContext.Instance));
+            // services.AddScoped(s => DaoFactory.Create<Location>(MemoryDataContext.Instance));
+
+            //Når vi skriver "new", så laves der en hård kobling, men det må der gerne laves en hård kobling i samme assembly
+            services.AddScoped(s => DaoFactory.Create<Car>(new SQLServerDataContext()));
+            services.AddScoped(s => DaoFactory.Create<Location>(new SQLServerDataContext()));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
+                //Version 1 af webAPI, så her kan tilføjes flere versioner
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "FleetManager.WebAPI", Version = "v1" });
             });
         }
