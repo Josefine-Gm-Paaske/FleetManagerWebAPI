@@ -48,10 +48,10 @@ namespace FleetManager.WebAPI.Controllers
             }
             Car newCar = _carDao.Create(car);
 
-            if (newCar.Id < 0)
+            if (newCar.Id > 0)
             {
                 Response.StatusCode = StatusCodes.Status201Created;
-                Response.Headers["Location"] = @$"/api/locations/{newCar.Id}";
+                Response.Headers["Location"] = @$"/api/locations/{newCar.Id}"; //Der må ikke returneres noget, derved skrives denne kode
             }
             else
             {
