@@ -31,6 +31,7 @@ namespace FleetManager.WebAPI
         private readonly IList<Location> _locations;
 
         private MemoryDataContext()
+            //Data der kun anvendes under test. Det hele skal knyttes til en database senere (SQL)
         {
             _cars = new List<Car>()
             {
