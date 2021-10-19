@@ -17,7 +17,7 @@
                 Mileage = car.Mileage,
                 Reserved = car.Reserved,
                 Href = car.ExtractHref(),
-                LocationHref = car.Location?.ExtractHref(),
+                LocationHref = car.Location?.ExtractHref()
             };
         }
 
