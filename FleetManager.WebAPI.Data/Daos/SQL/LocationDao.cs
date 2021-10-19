@@ -23,7 +23,7 @@ namespace FleetManager.WebAPI.Data.Daos.SQL
 
         public Location Create(Location model)
         {
-            string query = "INSERT INTO[Locations] (name) VALUES(@name)";
+            string query = "INSERT INTO[Locations] (name)" + "VALUES(@name); SELECT SCOPE_IDENTITY; ";
             using IDbConnection connection = DataContext.Open();
             connection.Query<Location>(query, new
             {
