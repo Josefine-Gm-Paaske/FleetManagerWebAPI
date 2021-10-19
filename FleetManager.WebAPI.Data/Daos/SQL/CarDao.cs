@@ -22,13 +22,14 @@ namespace FleetManager.WebAPI.Data.Daos.SQL
 
         public Car Create(Car model)
         {
-            string query = "INSERT INTO[Cars] (brand, mileage) VALUES(@brand, @mileage)";
+            string query = "INSERT INTO[Cars] (brand, mileage, reserved) VALUES(@brand, @mileage, @reserved)";
             using IDbConnection connection = DataContext.Open();
             //Ville være bedre med model i stedet for new anonym type, da der ikke er et id med denne løsning
             connection.Query<Car>(query, new
             {
                 brand = model.Brand,
                 mileage = model.Mileage,
+                reserved = model.Reserved,
             });
             return model;
 
