@@ -85,35 +85,36 @@ namespace FleetManager.WebAPI.Data.Daos.SQL
 
         public bool Update(Car model)
         {
+            bool temp = false;
             String quary = "SELECT* FROM Cars";
             using IDbConnection connection = DataContext.Open(); //By using "using", the connection objekt gets disposed after it leaves scope
             if (model.Brand != null)
             {
                 quary = "Update Cars Set Brand = @Brand WHERE id = @Id";
-                connection.Query<Car>(quary, new { id = model.Id, brand = model.Brand }).Any();
+                temp = connection.Query<Car>(quary, new { id = model.Id, brand = model.Brand }).Any();
 
             }
             if (model.Mileage != null)
             {
                 quary = "Update Cars Set Mileage = @Mileage WHERE id = @Id";
-                connection.Query<Car>(quary, new { id = model.Id, mileage = model.Mileage }).Any();
+                temp = connection.Query<Car>(quary, new { id = model.Id, mileage = model.Mileage }).Any();
             }
             else
             {
                 quary = "Update Cars Set Mileage = @Mileage WHERE id = @Id";
-                connection.Query<Car>(quary, new { id = model.Id, mileage = 0 }).Any();
+                temp = connection.Query<Car>(quary, new { id = model.Id, mileage = 0 }).Any();
             }
             if (model.Reserved != null)
             {
                 quary = "Update Cars Set Reserved = @Reserved WHERE id = @Id";
-                connection.Query<Car>(quary, new { id = model.Id, reserved = model.Reserved }).Any();
+                temp = connection.Query<Car>(quary, new { id = model.Id, reserved = model.Reserved }).Any();
             }
             if (model.Location != null)
             {
                 quary = "Update Cars Set Location = @Location WHERE id = @Id";
-                connection.Query<Car>(quary, new { location = model.Location }).Any();
+                temp = connection.Query<Car>(quary, new { location = model.Location }).Any();
             }
-            return true;
+            return temp;
         }
     }
 }
