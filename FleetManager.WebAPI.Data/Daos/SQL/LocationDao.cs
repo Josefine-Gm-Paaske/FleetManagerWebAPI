@@ -66,6 +66,12 @@ namespace FleetManager.WebAPI.Data.Daos.SQL
             return connection.Query<Location>(query).Where(predicate);
         }
 
+        public bool Update2(Car model)
+        {
+            string query = $"Update Cars SET Name = @Name WHERE Id = @Id";
+            using IDbConnection connection = DataContext.Open();
+            return connection.Query<Car>(query, model).Any();
+        }
         public bool Update1(Location model)
         {
             string query = "UPDATE Locations SET name = @name WHERE id=@id";
