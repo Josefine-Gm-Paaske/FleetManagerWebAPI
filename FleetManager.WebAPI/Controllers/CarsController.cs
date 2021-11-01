@@ -65,7 +65,7 @@ namespace FleetManager.WebAPI.Controllers
         {
             Car car = dto.Map();
             car.Id = id;
-            _carDao.Update(car);
+            _carDao.Update1(car);
         }
 
         // DELETE api/cars/5

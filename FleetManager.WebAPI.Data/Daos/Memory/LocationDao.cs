@@ -38,7 +38,7 @@ namespace FleetManager.WebAPI.Data.Daos.Memory
             return DataContext.Locations.Where(predicate);
         }
 
-        public bool Update(Location model)
+        public bool Update1(Location model)
         {
             if (Delete(model))
             {

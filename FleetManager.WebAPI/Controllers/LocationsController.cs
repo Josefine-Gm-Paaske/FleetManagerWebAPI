@@ -50,7 +50,7 @@ namespace FleetManager.WebAPI.Controllers
         {
             Location locationEntity = locationDto.Map();
             locationEntity.Id = id;
-            _locationsDao.Update(locationEntity);
+            _locationsDao.Update1(locationEntity);
         }
 
         [HttpDelete("{id}")]

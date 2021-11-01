@@ -31,7 +31,7 @@ namespace FleetManager.WebAPI.Data
         /// Updates the specified resource
         /// </summary>
         /// <returns>A value indicating if the operation succeeded</returns>
-        bool Update(TModel model);
+        bool Update1(TModel model);
 
         /// <summary>
         /// Deletes the specified resource

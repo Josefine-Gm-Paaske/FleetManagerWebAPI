@@ -70,20 +70,18 @@ namespace FleetManager.WebAPI.Data.Daos.SQL
             return connection.Query<Car>(query).Where(predicate);
         }
 
-        //public bool Update(Car model)
-        //{
-        //    string query = "UPDATE Cars SET brand = @brand, mileage = @mileage, location = @location WHERE id = @id";
-        //    using IDbConnection connection = DataContext.Open();
-        //    return connection.Query<Car>(query, new 
-        //    { 
-        //        brand = model.Brand,
-        //        mileage = model.Mileage,
-        //        location = model.Location,
-        //        id = model.Id,
-        //    }).Any();
-        //}
+        /**
+         * Two different methods to Update
+         * Both booleans
+         */
+        public bool Update2(Car model)
+        {
+            string query = $"Update Cars SET Brand = @Brand, Mileage = @Mileage, Location = @Location WHERE Id = @Id";
+            using IDbConnection connection = DataContext.Open();
+            return connection.Query<Car>(query, model).Any();
+        }
 
-        public bool Update(Car model)
+        public bool Update1(Car model)
         {
             bool temp = false;
             String quary = "SELECT* FROM Cars";

@@ -38,7 +38,7 @@ namespace FleetManager.WebAPI.Data.Daos.Memory
             return DataContext.Cars.Where(predicate);
         }
 
-        public bool Update(Car model)
+        public bool Update1(Car model)
         {
             Car oldCar = DataContext.Cars.SingleOrDefault(c => c.Id == model.Id);
             if (DataContext.Remove(oldCar))
